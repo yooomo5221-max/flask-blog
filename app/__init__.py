@@ -42,8 +42,8 @@ def create_app():
     from .routes import main_bp
     app.register_blueprint(main_bp)
 
+    from flask import redirect
+
     @app.route("/")
     def index():
-        from .models import Article
-        articles = Article.query.all()
-        return render_template("articles.html", articles=articles)
+        return redirect("/articles")
