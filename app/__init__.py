@@ -10,9 +10,8 @@ def create_app():
     app = Flask(__name__)
 
     # MySQL 数据库连接配置
-    app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql+pymysql://root:@127.0.0.1:3306/blog_db?charset=utf8mb4"
-    )
+    # SQLite 数据库配置
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
 
     # 关闭 SQLAlchemy 的事件追踪
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
