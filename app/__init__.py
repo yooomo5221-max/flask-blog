@@ -1,3 +1,4 @@
+from flask import Flask, render_template
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -43,6 +44,6 @@ def create_app():
 
     @app.route("/")
     def index():
-        return "我的个人博客系统启动成功！"
-
-    return app
+        from .models import Article
+        articles = Article.query.all()
+        return render_template("articles.html", articles=articles)
