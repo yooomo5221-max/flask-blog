@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}我的个人博客{% endblock %}</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="/articles" class="logo">
+                我的个人博客
+            </a>
+
+            <div class="nav-links">
+
+                <a href="/articles">首页</a>
+
+                {% if current_user.is_authenticated %}
+                    <a href="/article/create">发布文章</a>
+                    <a href="/profile">{{ current_user.username }}</a>
+                    <a href="/logout">退出</a>
+                {% else %}
+                    <a href="/login">登录</a>
+                    <a href="/register">注册</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer class="footer">
+        <p>我的个人博客 · Flask + MySQL</p>
+    </footer>
+
+</body>
+
+</html>

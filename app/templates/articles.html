@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}文章列表 - 我的个人博客{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>文章列表</h1>
+        <p>记录学习与生活，分享自己的想法。</p>
+    </div>
+
+    {% if current_user.is_authenticated %}
+        <a href="/article/create" class="btn">
+            + 发布文章
+        </a>
+    {% endif %}
+
+</div>
+
+
+{% if articles %}
+
+    <div class="article-list">
+
+        {% for article in articles %}
+
+        <article class="article-card">
+
+            <h2>
+                <a href="/article/{{ article.id }}">
+                    {{ article.title }}
+                </a>
+            </h2>
+
+            <div class="article-meta">
+                作者：{{ article.author.username }}
+                ·
+                发布时间：{{ article.created_at }}
+            </div>
+
+            <p class="article-content">
+                {{ article.content }}
+            </p>
+
+            <a
+                href="/article/{{ article.id }}"
+                class="read-more"
+            >
+                阅读全文 →
+            </a>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty">
+
+        <h2>还没有文章</h2>
+
+        <p>发布你的第一篇博客吧！</p>
+
+        {% if current_user.is_authenticated %}
+            <a href="/article/create" class="btn">
+                发布第一篇文章
+            </a>
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

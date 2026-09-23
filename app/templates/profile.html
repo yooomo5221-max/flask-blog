@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}个人中心 - 我的个人博客{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <div class="page-header">
+        <div>
+            <h1>个人中心</h1>
+            <p>查看你的账号信息和文章情况。</p>
+        </div>
+    </div>
+
+    <div class="profile-info">
+
+        <div class="profile-item">
+            <span class="profile-label">用户名</span>
+            <span>{{ current_user.username }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span class="profile-label">邮箱</span>
+            <span>{{ current_user.email }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span class="profile-label">文章数量</span>
+            <span>{{ current_user.articles|length }}</span>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+        <a href="/article/create" class="btn">
+            发布文章
+        </a>
+
+        <a href="/articles" class="btn-secondary">
+            返回文章列表
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

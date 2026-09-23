@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}登录 - 我的个人博客{% endblock %}
+
+{% block content %}
+
+<div class="form-card login-card">
+
+    <div class="page-header">
+        <div>
+            <h1>登录</h1>
+            <p>登录后即可发布和管理自己的文章。</p>
+        </div>
+    </div>
+
+    <form method="post">
+
+        <div class="form-group">
+            <label for="username">用户名</label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="请输入用户名"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="password">密码</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="请输入密码"
+                required
+            >
+        </div>
+
+        <div class="form-actions">
+
+            <button type="submit" class="btn">
+                登录
+            </button>
+
+            <a href="/register" class="btn-secondary">
+                注册账号
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

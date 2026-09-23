@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ article.title }} - 我的个人博客
+{% endblock %}
+
+{% block content %}
+
+<article class="detail-card">
+
+    <h1>{{ article.title }}</h1>
+
+    <div class="detail-meta">
+        作者：{{ article.author.username }}
+        ·
+        发布时间：{{ article.created_at }}
+    </div>
+
+    <div class="detail-content">
+        {{ article.content }}
+    </div>
+
+    <div class="detail-actions">
+
+        <a href="/articles" class="back-link">
+            ← 返回文章列表
+        </a>
+
+        {% if current_user.is_authenticated
+              and current_user.id == article.user_id %}
+
+            <a
+                href="/article/{{ article.id }}/edit"
+                class="btn"
+            >
+                编辑文章
+            </a>
+
+            <form
+                method="post"
+                action="/article/{{ article.id }}/delete"
+                style="display: inline;"
+            >
+                <button
+                    type="submit"
+                    class="delete-btn"
+                    onclick="return confirm('确定要删除这篇文章吗？');"
+                >
+                    删除文章
+                </button>
+            </form>
+
+        {% endif %}
+
+    </div>
+
+</article>
+
+{% endblock %}
